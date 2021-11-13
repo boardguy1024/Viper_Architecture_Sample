@@ -58,7 +58,7 @@ private extension UseCase {
 
 --------------
 
-#使用はこんな感じ！
+# 使用はこんな感じ！
 
 ## 遷移元のRouter内:
 ```ruby
@@ -70,7 +70,7 @@ private extension UseCase {
         view.navigationController?.pushViewController(sampleView, animated: true)
  ```       
 ## presenter内:
-```ruby
+```swift
 　class SamplePresenter {
     
     struct Dependency {
