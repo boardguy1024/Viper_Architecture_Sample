@@ -87,4 +87,15 @@ private extension UseCase {
         self.di = dependency
     }
 }
- ``` 
+ ```
+ 
+## SampleUseCase内:
+```swift
+class SampleUseCase: UseCaseProtocol {
+    
+    func execute(_ param: Void, completion: ((Result<[ArticleEntity], Error>) -> Void)?) {
+        // API 通信後 completion
+       // completion?(result)
+    }
+}
+ ```
