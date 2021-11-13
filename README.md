@@ -3,6 +3,7 @@ UseCaseをジェネリック化したViperArchitecture✨
 
 useCaseジェネリックはこんな感じ 👇🏿👇🏿
 
+```ruby
 import Foundation
 
 protocol UseCaseProtocol where Failure: Error {
@@ -53,20 +54,23 @@ private extension UseCase {
         }
     }
 }
+```
 
 --------------
 
 #使用はこんな感じ！
 
 ## 遷移元のRouter内:
+```ruby
   let sampleView = SampleViewController()
         let useCase = UseCase(SampleUseCase())
         let router = SampleRouter()
         sampleView.presenter = SamplePresenter(view: sampleView, inject: SamplePresenter.Dependency(useCase: useCase, router: router))
         
         view.navigationController?.pushViewController(sampleView, animated: true)
-        
+ ```       
 ## presenter内:
+```ruby
 　class SamplePresenter {
     
     struct Dependency {
@@ -82,5 +86,5 @@ private extension UseCase {
         self.view = view
         self.di = dependency
     }
-    
 }
+ ``` 
