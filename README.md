@@ -55,7 +55,32 @@ private extension UseCase {
 }
 
 --------------
---------------
 
-##使用はこんな感じ！
+#使用はこんな感じ！
 
+## 遷移元のRouter内:
+  let sampleView = SampleViewController()
+        let useCase = UseCase(SampleUseCase())
+        let router = SampleRouter()
+        sampleView.presenter = SamplePresenter(view: sampleView, inject: SamplePresenter.Dependency(useCase: useCase, router: router))
+        
+        view.navigationController?.pushViewController(sampleView, animated: true)
+        
+## presenter内:
+　class SamplePresenter {
+    
+    struct Dependency {
+        let useCase: UseCase<Void, [ArticleEntity], Error>
+        let router: SampleRouterProtocol
+    }
+    
+    // 強参照避けるため weakをつける weakはoptionalのため!をつける
+    weak var view: SampleViewProtocol!
+    var di: Dependency
+    
+    init(view: SampleViewProtocol, inject dependency: Dependency) {
+        self.view = view
+        self.di = dependency
+    }
+    
+}
